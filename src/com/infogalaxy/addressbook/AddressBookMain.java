@@ -40,6 +40,7 @@ public class AddressBookMain {
 				addressBook.updateContact();
 				break;
 			case 4:
+				addressBook.deleteContact();
 				break;
 			default:
 				System.out.println("Invalid Choice");
