@@ -1,6 +1,8 @@
 package com.infogalaxy.addressbook;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
 /**
  * 
  * @author DELL
@@ -8,11 +10,12 @@ import java.util.Scanner;
  */
 public class AddressBook {
 
-	Contacts contacts = new Contacts();
+	ArrayList<Contacts> contactList = new ArrayList<Contacts>();
 	
 	Scanner sc = new Scanner(System.in);
 		
 	public void addContact() {
+		Contacts contacts = new Contacts();
 		System.out.println("Enter the First Name:");
 		contacts.setFirstName(sc.next());
 		System.out.println("Enter the Last Name:");
@@ -29,27 +32,30 @@ public class AddressBook {
 		contacts.setPhoneNumber(sc.next());
 		System.out.println("Enter the EMail ID:");
 		contacts.setEmail(sc.next());
+		contactList.add(contacts);
 	}
 	public void showContact() {
-		if( contacts == null) {
-			System.out.println("Contact Object is Not Available");
-		} else {
-			System.out.println("First Name:"+contacts.getFirstName());
-			System.out.println("Last Name:"+contacts.getLastName());
-			System.out.println("Address:"+contacts.getAddress());
-			System.out.println("City:"+contacts.getCity());
-			System.out.println("State:"+contacts.getState());
-			System.out.println("Zipcode:"+contacts.getZip());
-			System.out.println("Phone Number:"+contacts.getPhoneNumber());
-			System.out.println("EMail ID:"+contacts.getEmail());
-		}
+			for(int j=0;j<contactList.size();j++)
+			{
+				Contacts contacts = contactList.get(j);
+				System.out.println("First Name:"+contacts.getFirstName());
+				System.out.println("Last Name:"+contacts.getLastName());
+				System.out.println("Address:"+contacts.getAddress());
+				System.out.println("City:"+contacts.getCity());
+				System.out.println("State:"+contacts.getState());
+				System.out.println("Zipcode:"+contacts.getZip());
+				System.out.println("Phone Number:"+contacts.getPhoneNumber());
+				System.out.println("EMail ID:"+contacts.getEmail());
+			}
 	}
+	
 	public void updateContact() {
-		if( contacts == null ) {
-			System.out.println("Contact Object is Not Available");
-		} else {
-			System.out.println("Enter the First Name to Update Contact:");
-			String fname = sc.next();
+		
+		System.out.println("Enter the First Name to Update Contact:");
+		String fname = sc.next();
+		
+		for(int i=0;i<contactList.size();i++) {
+			Contacts contacts = contactList.get(i);
 			if(fname.equals(contacts.getFirstName())) {
 				System.out.println("Contact available");
 				System.out.println("Enter the Last Name:");
@@ -66,21 +72,30 @@ public class AddressBook {
 				contacts.setPhoneNumber(sc.next());
 				System.out.println("Enter the EMail ID:");
 				contacts.setEmail(sc.next());
-				
-			} else {
-				System.out.println("Contact is Not Available");
 			}
+			contactList.add(contacts);
 		}
 	}
+
 	public void deleteContact() {
 		System.out.println("Enter the First Name to Delete the Contact:");
 		String fname = sc.next();
-		if(fname.equals(contacts.getFirstName())) {
-			System.out.println("Contact is Available");
-			contacts = null;
-			System.out.println("Contact is Deleted.");
-		} else {
-			System.out.println("Contact is Not Available");
+		for(int i=0;i<contactList.size();i++) {
+			
+			Contacts contacts = contactList.get(i);
+			
+			if(fname.equals(contacts.getFirstName())) {
+				System.out.println("Contact is Available");
+				
+				contactList.remove(contacts);
+				
+				System.out.println("Contact is Deleted.");
+			} else {
+				System.out.println("Contact is Not Available");
+			}
+
 		}
+	
 	}
+	
 }
