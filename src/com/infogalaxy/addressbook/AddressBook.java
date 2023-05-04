@@ -35,9 +35,8 @@ public class AddressBook {
 		contactList.add(contacts);
 	}
 	public void showContact() {
-			for(int j=0;j<contactList.size();j++)
+			for(Contacts contacts : contactList)
 			{
-				Contacts contacts = contactList.get(j);
 				System.out.println("First Name:"+contacts.getFirstName());
 				System.out.println("Last Name:"+contacts.getLastName());
 				System.out.println("Address:"+contacts.getAddress());
